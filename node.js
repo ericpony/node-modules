@@ -7,7 +7,7 @@ var Node = function() {
     this.children = nodes;
 }
 /**
-* create a subclass of class Node
+* create a subclass of Node
 */
 Node.create = function(name) {
     var subclass = function() { Node.apply(this, arguments) };
@@ -29,7 +29,7 @@ Node.create = function(name) {
 Node.prototype.toString = function() { return this.name + '(' + this.children + ')' }
 
 /**
-* Get the formula represented by a node in Z3 format
+* Get the formula represented by a node in Z3py format
 */
 Node.to_z3_formula = function(string_parser) {
     return function parse(node) {
@@ -88,6 +88,6 @@ Node.Imp = Node.create('Imp');
 module.exports = Node;
 
 if(0){ // demo
-  var node = AND('x*y>=100, IMP(AND('10<x', 'x<y'), '2*x<y^2'), IMP(OR('x<=0', 'x>=y'),'x^2<=y^2'));
+  var node = AND('x*y>=100', IMP(AND('10<x', 'x<y'), '2*x<y^2'), IMP(OR('x<=0', 'x>=y'),'x^2<=y^2'));
   console.log(Node.to_redlog_formula(function(x){ return x })(node));
 }

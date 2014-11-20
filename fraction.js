@@ -33,7 +33,8 @@ var Fraction = (function(){
         this.numerator = +numerator;
         this.denominator = denominator===undefined ? 1 : +denominator;
         // NaN check
-        assert(isNaN(this.numerator)||isNaN(this.denominator), 'Invalid fraction parameters: ' + arguments);
+        assert(!isNaN(this.numerator) && !isNaN(this.denominator), 
+            'Invalid fraction parameters: Fraction(' + Array.prototype.join.call(arguments) + ')');
         normalize(this);
     };
 })();
